@@ -78,7 +78,7 @@ const Resume = () => {
                 {
                   title: 'Code Playground',
                   links: [
-                    { icon: Github, url: 'https://github.com/caner-cetin/cansu.dev/tree/main/code' },
+                    { icon: Github, url: 'https://github.com/caner-cetin/code-cansu-dev' },
                     { icon: Eye, url: 'https://code.cansu.dev' }
                   ],
                   tech: 'React • HonoJS • Judge0',
@@ -87,7 +87,7 @@ const Resume = () => {
                 {
                   title: 'Media Player',
                   links: [
-                    { icon: Github, url: 'https://github.com/caner-cetin/cansu.dev/tree/main/dj' },
+                    { icon: Github, url: 'https://github.com/caner-cetin/dj-cansu-dev' },
                     { icon: Eye, url: 'https://cansu.dev/dj' }
                   ],
                   tech: 'GoLang • PostgreSQL • React',
