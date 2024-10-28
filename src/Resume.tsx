@@ -1,4 +1,5 @@
 import { Mail, Github, Eye } from 'lucide-react';
+
 const Resume = () => {
   const skills = [
     { id: 1, icon: "devicon-typescript-plain", text: "TypeScript" },
@@ -16,29 +17,34 @@ const Resume = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#222323] text-[#f0f6f0] font-mono p-4 md:p-8">
-      <div className="max-w-3xl mx-auto mb-6">
-        <h1 className="text-[#f0f6f0] text-3xl md:text-4xl font-bold text-center mb-3 tracking-wider">Caner Çetin</h1>
-        <div className="flex justify-center space-x-4 md:space-x-6 text-sm">
-          {[
-            { icon: Mail, text: 'hello@cansu.dev', link: 'mailto:hello@cansu.dev' },
-            { icon: Github, text: 'github.com/caner-cetin', link: 'https://github.com/caner-cetin' },
-          ].map((item) => (
-            <a
-              key={item.link}
-              href={item.link}
-              className="flex items-center text-[#f0f6f0] hover:text-[#a8afa8] transition-colors"
-            >
-              <item.icon className="w-4 h-4 mr-1" />
-              <span className="hidden md:inline">{item.text}</span>
-            </a>
-          ))}
+    <div className="min-h-screen bg-[#222323] text-[#f0f6f0] font-mono">
+      {/* Header Section - Reduced padding */}
+      <div className="relative py-8 mb-6 bg-gradient-to-b from-[#2a2b2b] to-[#222323]">
+        <div className="max-w-4xl mx-auto px-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-center mb-4 tracking-wider">Caner Çetin</h1>
+          <div className="flex justify-center space-x-6 text-sm">
+            {[
+              { icon: Mail, text: 'hello@cansu.dev', link: 'mailto:hello@cansu.dev' },
+              { icon: Github, text: 'github.com/caner-cetin', link: 'https://github.com/caner-cetin' },
+            ].map((item) => (
+              <a
+                key={item.link}
+                href={item.link}
+                className="flex items-center text-[#f0f6f0] hover:text-[#a8afa8] transition-colors group"
+              >
+                <item.icon className="w-4 h-4 mr-2" />
+                <span>{item.text}</span>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-        <div className="md:col-span-1 space-y-4">
-          <div className="p-4 border border-[#f0f6f0]">
+      {/* Main Content - Reduced spacing */}
+      <div className="max-w-4xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Left Column */}
+        <div className="lg:col-span-1 space-y-4">
+          <div className="p-4 border border-[#f0f6f0] hover:border-[#a8afa8] transition-colors bg-[#1e1f1f]">
             <h2 className="text-lg font-bold mb-2 tracking-wider">Education</h2>
             <div>
               <p className="text-sm">Eastern Mediterranean University</p>
@@ -47,24 +53,25 @@ const Resume = () => {
             </div>
           </div>
 
-          <div className="p-4 border border-[#f0f6f0]">
+          <div className="p-4 border border-[#f0f6f0] hover:border-[#a8afa8] transition-colors bg-[#1e1f1f]">
             <h2 className="text-lg font-bold mb-2 tracking-wider">Skills</h2>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-4 gap-4">
               {skills.map((skill) => (
                 <div
                   key={skill.id}
-                  className="flex items-center justify-center text-2xl"
+                  className="group flex items-center justify-center"
                   title={skill.text}
                 >
-                  <i className={`${skill.icon} hover:text-[#a8afa8] transition-colors`} />
+                  <i className={`${skill.icon} text-2xl group-hover:text-[#a8afa8] transition-colors`} />
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="md:col-span-2 space-y-4">
-          <div className="p-4 border border-[#f0f6f0]">
+        {/* Right Column */}
+        <div className="lg:col-span-2 space-y-4">
+          <div className="p-4 border border-[#f0f6f0] hover:border-[#a8afa8] transition-colors bg-[#1e1f1f]">
             <h2 className="text-lg font-bold mb-2 tracking-wider">Projects</h2>
             <div className="space-y-3">
               {[
@@ -95,12 +102,19 @@ const Resume = () => {
                   description: 'Cross-platform (CentOS/Ubuntu) automation for LAMP stack deployment with WordPress'
                 }
               ].map((project) => (
-                <div key={project.title} className="border-l-2 border-[#f0f6f0] pl-3">
+                <div
+                  key={project.title}
+                  className="border-l-2 border-[#f0f6f0] pl-3 hover:border-[#a8afa8] transition-colors"
+                >
                   <div className="flex justify-between items-center">
                     <h3 className="font-bold text-sm">{project.title}</h3>
                     <div className="flex space-x-2">
                       {project.links.map((link) => (
-                        <a key={link.url} href={link.url} className="text-[#f0f6f0] hover:text-[#a8afa8]">
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          className="text-[#f0f6f0] hover:text-[#a8afa8]"
+                        >
                           <link.icon className="w-4 h-4" />
                         </a>
                       ))}
@@ -113,7 +127,7 @@ const Resume = () => {
             </div>
           </div>
 
-          <div className="p-4 border border-[#f0f6f0]">
+          <div className="p-4 border border-[#f0f6f0] hover:border-[#a8afa8] transition-colors bg-[#1e1f1f]">
             <h2 className="text-lg font-bold mb-2 tracking-wider">Experience</h2>
             <div className="space-y-3">
               {[
@@ -133,7 +147,10 @@ const Resume = () => {
                   period: 'February 2023 - March 2023'
                 }
               ].map((job) => (
-                <div key={job.company} className="border-l-2 border-[#f0f6f0] pl-3">
+                <div
+                  key={job.company}
+                  className="border-l-2 border-[#f0f6f0] pl-3 hover:border-[#a8afa8] transition-colors"
+                >
                   <h3 className="font-bold text-sm">{job.company}</h3>
                   <p className="text-xs">{job.position}</p>
                   <p className="text-xs text-[#a8afa8]">{job.period}</p>
