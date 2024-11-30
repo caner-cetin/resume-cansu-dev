@@ -81,7 +81,7 @@ const Resume = () => {
                     { icon: Github, url: 'https://github.com/caner-cetin/code-cansu-dev' },
                     { icon: Eye, url: 'https://code.cansu.dev' }
                   ],
-                  tech: 'React • HonoJS • Judge0',
+                  tech: 'React • Golang • Docker Engine',
                   description: 'High-performance code playground supporting 38 languages'
                 },
                 {
