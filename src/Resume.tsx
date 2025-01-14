@@ -94,6 +94,14 @@ const Resume = () => {
                   description: 'Full-stack audio player demo with multichannel support'
                 },
                 {
+                  title: 'Music Recommendation Engine (WIP)',
+                  links: [
+                    { icon: Github, url: 'https://github.com/caner-cetin/conan' }
+                  ],
+                  tech: 'C++ • QT',
+                  description: ''
+                },
+                {
                   title: 'LAMP Stack Automation',
                   links: [
                     { icon: Github, url: 'https://github.com/caner-cetin/saltstack-wordpress-mysql-setup' }
