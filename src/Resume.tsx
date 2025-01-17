@@ -94,6 +94,22 @@ const Resume = () => {
                   description: 'Full-stack audio player demo with multichannel support'
                 },
                 {
+                  title: 'LAMP Stack Automation',
+                  links: [
+                    { icon: Github, url: 'https://github.com/caner-cetin/saltstack-wordpress-mysql-setup' }
+                  ],
+                  tech: 'SaltStack • Vagrant',
+                  description: 'Cross-platform (CentOS/Ubuntu) automation for LAMP stack deployment with WordPress'
+                },
+                {
+                  title: 'Trench',
+                  links: [
+                    { icon: Github, url: 'https://github.com/caner-cetin/trench' }
+                  ],
+                  tech: 'Python • QT • OpenCV',
+                  description: 'Object extractor and upscaler GUI, built with OpenCV / QT, based on RealESRGAN and Segment Anything.'
+                },
+                {
                   title: 'Music Recommendation Engine (WIP)',
                   links: [
                     { icon: Github, url: 'https://github.com/caner-cetin/conan' }
@@ -101,14 +117,6 @@ const Resume = () => {
                   tech: 'C++ • QT',
                   description: ''
                 },
-                {
-                  title: 'LAMP Stack Automation',
-                  links: [
-                    { icon: Github, url: 'https://github.com/caner-cetin/saltstack-wordpress-mysql-setup' }
-                  ],
-                  tech: 'SaltStack • Vagrant',
-                  description: 'Cross-platform (CentOS/Ubuntu) automation for LAMP stack deployment with WordPress'
-                }
               ].map((project) => (
                 <div
                   key={project.title}
