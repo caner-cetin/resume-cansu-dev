@@ -1,10 +1,11 @@
-@import "/minified-devicon.css";
+@import "/fonts/MinifiedDevicon.css";
+@import "/fonts/FSEX300.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .pixel-border {
-  box-shadow: 
+  box-shadow:
     -4px 0 0 0 #272744,
     4px 0 0 0 #272744,
     0 -4px 0 0 #272744,
@@ -16,7 +17,7 @@
 }
 
 .glow-text {
-  text-shadow: 
+  text-shadow:
     0 0 10px #f2d3ab,
     2px 2px 0 #272744;
 }
@@ -35,7 +36,7 @@
 
 .hover-section:hover {
   transform: translateY(-4px);
-  box-shadow: 
+  box-shadow:
     -4px 0 0 0 #272744,
     4px 0 0 0 #272744,
     0 -4px 0 0 #272744,
@@ -43,7 +44,38 @@
 }
 
 @keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes static {
+  0% {
+    opacity: 0.7;
+  }
+
+  25% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+
+  75% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.7;
+  }
 }
