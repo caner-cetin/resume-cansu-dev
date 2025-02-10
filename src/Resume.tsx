@@ -49,7 +49,7 @@ const PipBoyResume = () => {
     { name: 'GoLang', icon: 'go-original-wordmark' },
     { name: 'React', icon: 'react-original' },
     { name: 'ASP.NET', icon: 'dotnetcore-plain' },
-    { name: 'Kotlin', icon: 'kotlin-plain' },
+    { name: 'C++' },
   ]
 
   const tools = [
@@ -142,7 +142,7 @@ const PipBoyResume = () => {
                   <div className="grid grid-cols-3 gap-4">
                     {[...skills, ...tools].map(item => (
                       <div key={item.name} className="flex flex-col items-center gap-1">
-                        <i className={`devicon devicon-${item.icon} text-2xl`} title={item.name} />
+                        {item.icon ? <i className={`devicon devicon-${item.icon} text-2xl`} title={item.name} /> : null}
                         <span className="text-xs text-center">{item.name}</span>
                       </div>
                     ))}
