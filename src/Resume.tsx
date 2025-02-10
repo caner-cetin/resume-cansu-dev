@@ -100,7 +100,7 @@ const PipBoyResume = () => {
         {/* Status Bar */}
         <div className="border-b border-[#4AFA4A] px-4 py-2 flex flex-col md:flex-row md:justify-between md:items-center justify-between items-center gap-2 text-[#4AFA4A] text-sm">
           <div className="text-center md:text-left pip-boy-glow">CANER ÇETIN</div>
-          <div className="text-center md:text-left">CLEARANCE LEVEL: ONLY BALDS</div>
+          <div className="text-center md:text-left">beep</div>
           <div className="flex justify-center md:justify-end space-x-4">
             <a
               href="mailto:hello@cansu.dev"
