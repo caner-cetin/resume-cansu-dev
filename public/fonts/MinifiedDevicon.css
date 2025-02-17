@@ -1,14 +1,9 @@
 @font-face {
     font-family: "devicon";
-    src: url('/fonts/devicon.eot');
-    src: url('/fonts/devicon.eot?#iefix') format('embedded-opentype'),
-        url('/fonts/devicon.woff2') format('woff2'),
-        url('/fonts/devicon.woff') format('woff'),
-        url('/fonts/devicon.ttf') format('truetype'),
-        url('/fonts/devicon.svg#devicon') format('svg');
+    src: url("fonts/MinifiedDevicon.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
 }
 
 [class^="devicon-"],
@@ -70,4 +65,8 @@
 
 .devicon-amazonwebservices-original:before {
     content: "\E90C";
+}
+
+.devicon-cplusplus-plain:before {
+    content: "\E99A";
 }
