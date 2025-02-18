@@ -146,10 +146,7 @@ const Resume = () => {
       tech: 'SaltStack • Vagrant',
       description: 'Cross-platform automation for LAMP stack deployment',
       icon: <BookOpen className="w-5 h-5" />,
-      achievements: [
-        'Automated deployment process using Vagrant and Ubuntu',
-        'Cross-platform compatibility',
-      ],
+      achievements: [],
       link: 'https://github.com/caner-cetin/saltstack-wordpress-mysql-setup'
     }
   ]
@@ -298,7 +295,7 @@ const Resume = () => {
                 />
               </button>
               {expandedSections.includes('projects') && (
-                <div className="p-3 border-t border-[#4AFA4A] space-y-4">
+                <div className="p-3 border-t border-[#4AFA4A] space-y-4 max-h-[400px] overflow-y-auto">
                   {projects.map(project => (
                     <ProjectCard key={project.title} project={project} />
                   ))}
