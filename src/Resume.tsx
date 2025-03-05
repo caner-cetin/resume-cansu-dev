@@ -114,7 +114,7 @@ const Resume = () => {
     {
       title: 'Strafe',
       tech: 'Golang • Docker Engine',
-      description: 'Media upload and processing system for dj.cansu.dev (WIP)',
+      description: 'Media upload and processing system for dj.cansu.dev',
       icon: <Database className="w-5 h-5" />,
       achievements: [
         'RESTful API with Go Chi',
