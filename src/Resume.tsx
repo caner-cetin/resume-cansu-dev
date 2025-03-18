@@ -123,6 +123,16 @@ const Resume = () => {
       link: 'https://github.com/caner-cetin/strafe'
     },
     {
+      title: 'Halycon',
+      tech: 'Golang',
+      description: 'Utility set for Amazon SP-API',
+      icon: <Database className="w-5 h-5" />,
+      achievements: [
+        'User-friendly CLI with zero dependencies',
+      ],
+      link: 'https://github.com/caner-cetin/halycon'
+    },
+    {
       title: 'Trench',
       tech: 'Python • QT',
       description: 'Object extractor and upscaler GUI',
