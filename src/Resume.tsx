@@ -1,184 +1,175 @@
 import React, { useState, useEffect } from 'react'
-import { Mail, Github, ChevronDown, ExternalLink, BookOpen, Code, Database, Radio, LucideUpload, Music } from 'lucide-react'
+import { Mail, Github, ChevronDown, ExternalLink, BookOpen, Code, Database, LucideUpload, Music, Server, Cpu, Monitor, GitBranch, FileCode, PenTool } from 'lucide-react' // Added more relevant icons
 
 const Resume = () => {
-  const [activeTab, setActiveTab] = useState('STATS')
+  // Sounds logic remains the same - assuming you want to keep it
+  const [activeTab, setActiveTab] = useState('INFO') // Changed default tab name
   const [expandedSections, setExpandedSections] = useState<string[]>([])
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
 
+  // Sounds can be kept if desired, or removed
   const sounds = {
     tab: new Audio('/audio/ui_pipboy_tab.wav'),
     select: new Audio('/audio/ui_pipboy_select.wav'),
     highlight: new Audio('/audio/ui_pipboy_highlight.wav'),
     mode: new Audio('/audio/ui_pipboy_mode.wav'),
-    hum: new Audio('/audio/ui_pipboy_hum_lp.wav')
   }
 
   useEffect(() => {
     const handleResize = () => {
-      const newIsMobile = window.innerWidth < 768
+      const newIsMobile = window.innerWidth < 768;
       if (newIsMobile !== isMobile) {
-        sounds.mode.play()
-        setIsMobile(newIsMobile)
+        sounds.mode.play(); // Optional sound
+        setIsMobile(newIsMobile);
       }
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [isMobile])
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobile]); // Removed sounds dependency if unused
 
   const handleTabChange = (newTab: string) => {
-    sounds.tab.play()
-    setActiveTab(newTab)
-  }
+    sounds.tab.play(); // Optional sound
+    setActiveTab(newTab);
+  };
 
   const toggleSection = (section: string) => {
-    sounds.select.play()
+    sounds.select.play(); // Optional sound
     setExpandedSections(prev =>
       prev.includes(section)
         ? prev.filter(s => s !== section)
         : [...prev, section]
-    )
-  }
+    );
+  };
 
   const handleSectionHover = () => {
-    sounds.highlight.play()
-  }
+    sounds.highlight.play(); // Optional sound
+  };
 
-  const summary = `meep`
+  // --- UPDATED CONTENT ---
 
   const skills = [
-    { name: 'Python', icon: 'python-plain' },
-    { name: 'TypeScript', icon: 'typescript-plain' },
-    { name: 'GoLang', icon: 'go-original-wordmark' },
-    { name: 'React', icon: 'react-original' },
-    { name: 'ASP.NET', icon: 'dotnetcore-plain' },
-    { name: 'C++', icon: 'cplusplus-plain' }
-  ]
-
-  const tools = [
-    { name: 'Docker', icon: 'docker-plain' },
-    { name: 'PostgreSQL', icon: 'postgresql-plain' },
-    { name: 'MongoDB', icon: 'mongodb-plain' },
-    { name: 'SQLite', icon: 'sqlite-plain' },
-    { name: 'Git', icon: 'git-plain' },
-    { name: 'AWS', icon: 'amazonwebservices-original' }
-  ]
+    { category: 'Backend & API', items: ['Go (Chi)', 'Python (FastAPI, Django)', 'Kotlin', 'ASP.NET Core', 'RESTful API Design', 'WebSockets'], icon: <Server className="w-4 h-4 mr-1" /> },
+    { category: 'DevOps & Infra', items: ['Docker (Engine API, Networking)', 'IaC', 'CI/CD (GitHub Actions)', 'Cloudflare (R2, Pages)', 'Linux Server Provisioning/Mgmt', 'Nginx'], icon: <Cpu className="w-4 h-4 mr-1" /> },
+    { category: 'Databases & Cache', items: ['PostgreSQL', 'MongoDB', 'Redis (DragonflyDB)', 'SQLite'], icon: <Database className="w-4 h-4 mr-1" /> },
+    { category: 'Monitoring', items: ['Prometheus', 'Grafana', 'Loki', 'cAdvisor', 'Node Exporter', 'Uptime Kuma', 'OTEL (conceptual)'], icon: <Monitor className="w-4 h-4 mr-1" /> },
+    { category: 'Tools', items: ['Git', 'Shell Scripting', 'S3 Storage', 'Secrets Management', 'HLS/FFMPEG', 'Plane.dev', 'Vagrant'], icon: <PenTool className="w-4 h-4 mr-1" /> },
+    { category: 'Frontend (Supporting)', items: ['TypeScript', 'React', 'TailwindCSS', 'Zustand', 'TanStack Router/Query'], icon: <FileCode className="w-4 h-4 mr-1" /> },
+  ];
 
   const employment = [
     {
       company: 'Boyner Büyük Mağazacılık',
-      role: 'Backend Engineer',
+      role: 'Backend Engineer Intern',
       tech: 'ASP.NET',
-      period: 'June 2024 - August 2024',
+      period: 'June 2024 - Aug 2024',
+      location: 'Istanbul, TR',
+      // No bullet points
     },
     {
       company: 'ElephantApps',
       role: 'Backend Engineer',
       tech: 'Python / FastAPI',
-      period: 'March 2023 - January 2024',
+      period: 'Mar 2023 - Jan 2024',
+      location: 'Istanbul, TR',
+      // No bullet points
     },
     {
       company: 'VisitRise',
-      role: 'Data Engineer',
+      role: 'Data Engineer (Contract)',
       tech: 'GoLang',
-      period: 'February 2023 - March 2023',
+      period: 'Feb 2023 - Mar 2023',
+      location: 'Remote',
+      // No bullet points
     }
-  ]
+  ];
 
   const projects = [
     {
-      title: 'Code Playground',
-      tech: 'React • Golang • Docker Engine',
-      description: 'Code playground with real-time compilation and execution',
+      title: 'Oblivion - Personal DevOps Toolkit',
+      tech: 'Go (Cobra) • Docker API • 1Password • TOML',
+      description: 'CLI for personal IaC & Docker service provisioning.',
+      icon: <LucideUpload className="w-5 h-5" />, // More relevant icon
+      achievements: [
+        'Provisions services (HA PostgreSQL, Nginx, Redis, Monitoring) via TOML config.',
+        'Manages Docker resources (networks, volumes, images) using Engine API.',
+        'Integrates 1Password CLI for secure secrets injection during deployment.',
+        'Includes `wal-g` S3 backup helpers & monitoring stack deployment (Prometheus, Grafana, Loki).', // Combined for brevity
+      ],
+      link: 'https://github.com/caner-cetin/oblivion',
+    },
+    {
+      title: 'Code Playground (code.cansu.dev)',
+      tech: 'Go (Chi) • React • Docker API • cgroups v2',
+      description: 'Full-stack online code execution platform.',
       icon: <Code className="w-5 h-5" />,
       achievements: [
-        'Containerized execution environment with Docker Engine API',
-        'Lightweight and fast code execution',
+        'Supports code execution in isolated Docker containers managed via Engine API.',
+        'Engineered secure sandboxes with resource limits & monitoring (cgroups v2).',
+        'Deployed/managed supporting infra (Monitoring, HA DB, Redis, Plane.dev).',
       ],
       link: 'https://github.com/caner-cetin/code-cansu-dev',
       preview: 'https://code.cansu.dev'
     },
     {
-      title: 'Media Player',
-      tech: 'GoLang • PostgreSQL • React',
-      description: 'Full-stack audio player demo',
-      icon: <Radio className="w-5 h-5" />,
+      title: 'Strafe - Music Library Engine (dj.cansu.dev)',
+      tech: 'Go (Chi/Cobra) • Docker • FFMPEG • S3 • PostgreSQL (sqlc/Goose)',
+      description: 'Backend & CLI for processing/serving a multi-channel music library.',
+      icon: <Music className="w-5 h-5" />,
       achievements: [
-        'Custom HLS based audio streaming',
-        'Dual channel streaming with synchronized vocal and instrument streams',
+        'Audio pipeline uses Docker, FFMPEG, Python tools for vocal separation, HLS, metadata.',
+        'Stores metadata/compressed waveforms (zlib) in PostgreSQL; managed via sqlc/Goose.',
+        'Serves audio segments & art from Cloudflare R2 (S3 API) via REST API.',
       ],
-      link: 'https://github.com/caner-cetin/dj-cansu-dev',
+      link: 'https://github.com/caner-cetin/strafe',
       preview: 'https://dj.cansu.dev'
     },
     {
-      title: 'Strafe',
-      tech: 'Golang • Docker Engine',
-      description: 'Media upload and processing system for dj.cansu.dev',
-      icon: <Database className="w-5 h-5" />,
+      title: 'Halycon - Amazon SP-API Utility',
+      tech: 'Go (Cobra) • SP-API • oapi-codegen',
+      description: 'CLI tool for automating Amazon Selling Partner API tasks.',
+      icon: <GitBranch className="w-5 h-5" />, // Different icon
       achievements: [
-        'RESTful API with Go Chi',
-        'Automated media transcoding pipeline with Docker Engine API',
-      ],
-      link: 'https://github.com/caner-cetin/strafe'
-    },
-    {
-      title: 'Halycon',
-      tech: 'Golang',
-      description: 'Utility set for Amazon SP-API',
-      icon: <Database className="w-5 h-5" />,
-      achievements: [
-        'User-friendly CLI with zero dependencies',
+        'Automates Catalog, FBA, Listings, Feeds API interactions.',
+        'Handles SP-API authentication (LWA tokens), rate limiting, configuration.',
+        'Generates type-safe Go client from OpenAPI specs using `oapi-codegen`.',
       ],
       link: 'https://github.com/caner-cetin/halycon'
     },
     {
-      title: 'Trench',
-      tech: 'Python • QT',
-      description: 'Object extractor and upscaler GUI',
-      icon: null,
-      achievements: [
-        'Easy to use QT GUI for RealESRGAN and Segment Anything',
-        'OpenCV integration for SAM segmentation',
-      ],
-      link: 'https://github.com/caner-cetin/trench'
-    },
-    {
-      title: 'Conan',
-      tech: 'C++ • QT',
-      description: 'Music recommendation engine (WIP)',
-      icon: <Music className="w-5 h-5" />,
-      achievements: [],
-      link: 'https://github.com/caner-cetin/conan'
-    },
-    {
-      title: 'LAMP Stack Automation',
-      tech: 'SaltStack • Vagrant',
-      description: 'Cross-platform automation for LAMP stack deployment',
+      title: 'Automated Server Setup (SaltStack)',
+      tech: 'SaltStack • Vagrant • Linux (CentOS/Ubuntu)',
+      description: 'Cross-platform IaC for multi-machine server provisioning.',
       icon: <BookOpen className="w-5 h-5" />,
-      achievements: [],
+      achievements: [
+        'Automated WordPress (CentOS) & MySQL (Ubuntu) setup using SaltStack state files.',
+        'Managed VM creation, networking, and Salt Minion bootstrap with Vagrant.',
+        'Configured system services, users, firewall using Salt states, Pillar, Grains.',
+      ],
       link: 'https://github.com/caner-cetin/saltstack-wordpress-mysql-setup'
     }
   ]
 
-  const ProjectCard = ({ project }) => (
-    <div className="min-w-[300px] max-w-[400px] border-l-2 border-[#4AFA4A] pl-4 mr-6 flex flex-col">
-      <div className="flex items-center gap-2 mb-1">
-        {project.icon}
-        <span className="text-base font-bold">&gt; {project.title}</span>
+  // Project Card Component (Updated Styling)
+  const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
+    // Use theme colors
+    <div className="min-w-[300px] max-w-[400px] border-l-2 border-ink-light pl-4 mr-6 mb-4 flex flex-col bg-parchment rounded-r shadow-sm">
+      <div className="flex items-center gap-2 mb-1 pt-2">
+        {project.icon && React.cloneElement(project.icon, { className: "w-5 h-5 text-ink-dark" })}
+        <span className="text-base font-bold text-ink-darkest"> {project.title}</span>
       </div>
-      <div className="text-sm text-[#3AEA3A]">{project.tech}</div>
-      <div className="text-sm mb-2">{project.description}</div>
+      <div className="text-xs text-ink mb-1">{project.tech}</div>
+      <div className="text-sm mb-2 text-ink-dark">{project.description}</div>
       <ul className="list-disc list-inside text-sm space-y-1 mb-2 flex-grow">
         {project.achievements.map((achievement, index) => (
-          <li key={index} className="text-[#3AEA3A]">{achievement}</li>
+          // Use a different color/style for list items
+          <li key={index} className="text-ink"> {achievement} </li>
         ))}
       </ul>
-      <div className="flex gap-3 mt-auto">
+      <div className="flex gap-3 mt-auto pb-2">
         <a
           href={project.link}
-          className="text-sm hover:text-[#2ADA2A] flex items-center gap-1 transition-colors"
-          onMouseEnter={() => sounds.highlight.play()}
+          className="text-sm text-ink hover:text-ink-darkest flex items-center gap-1 transition-colors"
+          onMouseEnter={handleSectionHover} // Optional sound
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -188,8 +179,8 @@ const Resume = () => {
         {project.preview && (
           <a
             href={project.preview}
-            className="text-sm hover:text-[#2ADA2A] flex items-center gap-1 transition-colors"
-            onMouseEnter={() => sounds.highlight.play()}
+            className="text-sm text-ink hover:text-ink-darkest flex items-center gap-1 transition-colors"
+            onMouseEnter={handleSectionHover} // Optional sound
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -199,92 +190,85 @@ const Resume = () => {
         )}
       </div>
     </div>
-  )
+  );
 
   return (
-    <div className="min-h-screen bg-black p-4 font-fixedsys text-base flex items-center justify-center h-[calc(100vh-120px)] md:h-[calc(100vh-88px)] overflow-y-auto">
-      <div className="w-full max-w-[1200px] min-h-[600px] bg-[#001800] rounded-lg relative overflow-hidden">
-        {/* Status Bar */}
-        <div className="border-b border-[#4AFA4A] px-4 py-2 flex flex-col md:flex-row md:justify-between md:items-center justify-between items-center gap-2 text-[#4AFA4A] text-sm">
-          <div className="text-center md:text-left pip-boy-glow">CANER ÇETIN</div>
-          <div className="text-center md:text-left opacity-80">{summary}</div>
-          <div className="flex justify-center md:justify-end space-x-4">
+    // Main container with parchment background and ink text
+    <div className="min-h-screen bg-parchment-light p-2 sm:p-4 font-fixedsys text-base flex items-center justify-center">
+      {/* Main content box with border and darker parchment background */}
+      <div className="w-full max-w-[1200px] min-h-[650px] h-[calc(100vh-40px)] sm:h-[calc(100vh-60px)] bg-parchment border-2 border-ink-dark rounded-sm shadow-lg flex flex-col overflow-hidden">
+
+        {/* Status Bar - Ink text on parchment, border bottom */}
+        <div className="border-b-2 border-ink-dark px-3 py-1 flex flex-col sm:flex-row sm:justify-between sm:items-center text-ink-darkest text-sm">
+          <div className="text-center sm:text-left font-bold">CANER ÇETIN</div>
+          {/* Removed summary */}
+          <div className="flex justify-center sm:justify-end space-x-4 mt-1 sm:mt-0">
             <a
-              href="mailto:hello@cansu.dev"
-              className="hover:text-[#2ADA2A] flex items-center gap-1 transition-colors"
-              onMouseEnter={() => sounds.highlight.play()}
+              href="mailto:canercetin853@gmail.com" // Corrected mailto
+              className="hover:text-ink-darkest flex items-center gap-1 transition-colors"
+              onMouseEnter={handleSectionHover} // Optional sound
             >
               <Mail className="w-4 h-4" />
-              <span className="hidden md:inline">CONTACT</span>
+              <span className="hidden sm:inline">CONTACT</span>
             </a>
             <a
               href="https://github.com/caner-cetin"
-              className="hover:text-[#2ADA2A] flex items-center gap-1 transition-colors"
-              onMouseEnter={() => sounds.highlight.play()}
+              className="hover:text-ink-darkest flex items-center gap-1 transition-colors"
+              onMouseEnter={handleSectionHover} // Optional sound
+              target="_blank" rel="noopener noreferrer" // Good practice for external links
             >
               <Github className="w-4 h-4" />
-              <span className="hidden md:inline">GITHUB</span>
+              <span className="hidden sm:inline">GITHUB</span>
             </a>
-            <span className="hidden md:inline">{new Date().toLocaleDateString()}</span>
           </div>
         </div>
 
-        {/* Content Area */}
-        <div className="p-4 md:p-6 text-[#4AFA4A] h-[calc(100%-88px)] overflow-y-auto">
+        {/* Content Area - Scrollable */}
+        <div className="flex-grow p-3 sm:p-4 overflow-y-auto scrollbar-thin">
+
           {/* Mobile View */}
-          <div className="md:hidden space-y-4">
-            {/* Skills & Tools Section */}
-            <div className="border border-[#4AFA4A] rounded">
+          <div className="md:hidden space-y-3">
+            {/* Skills Section */}
+            <div className="border border-ink-light rounded">
               <button
-                className="w-full p-3 flex justify-between items-center"
+                className="w-full p-2 flex justify-between items-center text-ink-darkest hover:bg-parchment-dark transition-colors"
                 onClick={() => toggleSection('skills')}
                 onMouseEnter={handleSectionHover}
               >
                 <span>SKILLS & TOOLS</span>
                 <ChevronDown
-                  className={`w-4 h-4 transform transition-transform ${expandedSections.includes('skills') ? 'rotate-180' : ''
-                    }`}
-                />
+                  className={`w-4 h-4 transform transition-transform ${expandedSections.includes('skills') ? 'rotate-180' : ''}`} />
               </button>
               {expandedSections.includes('skills') && (
-                <div className="p-3 border-t border-[#4AFA4A]">
-                  <div className="grid grid-cols-3 gap-4 mt-4">
-                    {[...skills, ...tools].map(item => (
-                      <div key={item.name} className="flex flex-col items-center gap-1">
-                        {item.icon && (
-                          <i
-                            className={`devicon devicon-${item.icon} text-2xl`}
-                            title={item.name}
-                          />
-                        )}
-                        <span className="text-xs text-center">{item.name}</span>
-                      </div>
-                    ))}
-                  </div>
+                <div className="p-3 border-t border-ink-light">
+                  {skills.map(skillCat => (
+                    <div key={skillCat.category} className="mb-2">
+                      <h4 className="font-bold text-ink-darkest flex items-center mb-1">{skillCat.icon}{skillCat.category}</h4>
+                      <p className="text-xs text-ink">{skillCat.items.join(' • ')}</p>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
 
-            {/* Employment Section */}
-            <div className="border border-[#4AFA4A] rounded">
+            {/* Experience Section */}
+            <div className="border border-ink-light rounded">
               <button
-                className="w-full p-3 flex justify-between items-center"
+                className="w-full p-2 flex justify-between items-center text-ink-darkest hover:bg-parchment-dark transition-colors"
                 onClick={() => toggleSection('employment')}
                 onMouseEnter={handleSectionHover}
               >
-                <span>EMPLOYMENT</span>
+                <span>EXPERIENCE</span>
                 <ChevronDown
-                  className={`w-4 h-4 transform transition-transform ${expandedSections.includes('employment') ? 'rotate-180' : ''
-                    }`}
-                />
+                  className={`w-4 h-4 transform transition-transform ${expandedSections.includes('employment') ? 'rotate-180' : ''}`} />
               </button>
               {expandedSections.includes('employment') && (
-                <div className="p-3 border-t border-[#4AFA4A] space-y-4">
-                  {employment.map(job => (
-                    <div key={job.company} className="border-l-2 border-[#4AFA4A] pl-4">
-                      <div className="text-base font-bold">&gt; {job.company}</div>
-                      <div className="text-sm">{job.role} - {job.tech}</div>
-                      <div className="text-sm opacity-80 mb-2">{job.period}</div>
+                <div className="p-3 border-t border-ink-light space-y-3">
+                  {employment.map((job, index) => (
+                    <div key={index} className="border-l-2 border-ink-light pl-3">
+                      <div className="font-bold text-ink-darkest"> {job.company}</div>
+                      <div className="text-sm text-ink-dark">{job.role} - {job.tech}</div>
+                      <div className="text-xs text-ink opacity-80">{job.period} | {job.location}</div>
                     </div>
                   ))}
                 </div>
@@ -292,23 +276,44 @@ const Resume = () => {
             </div>
 
             {/* Projects Section */}
-            <div className="border border-[#4AFA4A] rounded">
+            <div className="border border-ink-light rounded">
               <button
-                className="w-full p-3 flex justify-between items-center"
+                className="w-full p-2 flex justify-between items-center text-ink-darkest hover:bg-parchment-dark transition-colors"
                 onClick={() => toggleSection('projects')}
                 onMouseEnter={handleSectionHover}
               >
                 <span>PROJECTS</span>
                 <ChevronDown
-                  className={`w-4 h-4 transform transition-transform ${expandedSections.includes('projects') ? 'rotate-180' : ''
-                    }`}
-                />
+                  className={`w-4 h-4 transform transition-transform ${expandedSections.includes('projects') ? 'rotate-180' : ''}`} />
               </button>
               {expandedSections.includes('projects') && (
-                <div className="p-3 border-t border-[#4AFA4A] space-y-4 max-h-[400px] overflow-y-auto">
-                  {projects.map(project => (
+                <div className="p-3 border-t border-ink-light space-y-4">
+                  {projects.map((project) => (
+                    // Mobile Project Card might need different styling if desired
                     <ProjectCard key={project.title} project={project} />
                   ))}
+                </div>
+              )}
+            </div>
+
+            {/* Education Section */}
+            <div className="border border-ink-light rounded">
+              <button
+                className="w-full p-2 flex justify-between items-center text-ink-darkest hover:bg-parchment-dark transition-colors"
+                onClick={() => toggleSection('education')}
+                onMouseEnter={handleSectionHover}
+              >
+                <span>EDUCATION</span>
+                <ChevronDown
+                  className={`w-4 h-4 transform transition-transform ${expandedSections.includes('education') ? 'rotate-180' : ''}`} />
+              </button>
+              {expandedSections.includes('education') && (
+                <div className="p-3 border-t border-ink-light">
+                  <div className="border-l-2 border-ink-light pl-3">
+                    <div className="font-bold text-ink-darkest"> Eastern Mediterranean University</div>
+                    <div className="text-sm text-ink-dark">B.S. in Computer Science</div>
+                    <div className="text-xs text-ink opacity-80">Famagusta, TRNC</div>
+                  </div>
                 </div>
               )}
             </div>
@@ -316,70 +321,56 @@ const Resume = () => {
 
           {/* Desktop View */}
           <div className="hidden md:block">
-            {activeTab === 'STATS' && (
-              <div className="space-y-8">
-                {/* Technical Skills Grid */}
-                <div className="grid grid-cols-2 gap-6 md:gap-x-12">
-                  <div>
-                    <h3 className="text-lg font-bold mb-4">Primary Skills</h3>
-                    <div className="grid grid-cols-3 gap-4">
-                      {skills.map(skill => (
-                        <div key={skill.name}
-                          className="flex flex-col items-center p-3 bg-[#002800] rounded hover:bg-[#003800] transition-colors gap-2">
-                          <i className={`devicon devicon-${skill.icon} text-3xl`} />
-                          <span>{skill.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold mb-4">Tools & Technologies</h3>
-                    <div className="grid grid-cols-3 gap-4">
-                      {tools.map(tool => (
-                        <div
-                          key={tool.name}
-                          className="flex flex-col items-center p-3 bg-[#002800] rounded hover:bg-[#003800] transition-colors gap-2"
-                        >
-                          <i className={`devicon devicon-${tool.icon} text-3xl`} />
-                          <span>{tool.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Education Section */}
+            {activeTab === 'INFO' && (
+              <div className="space-y-6">
+                {/* Skills Grid */}
                 <div>
-                  <h3 className="text-lg font-bold mb-4">Education</h3>
-                  <div className="border-l-2 border-[#4AFA4A] pl-4">
-                    <div className="text-base">&gt; Eastern Mediterranean University</div>
-                    <div className="text-sm">
-                      <div className="text-sm">BSc Computer Science</div>
-                      <div className="text-sm opacity-80">2020-2025 (Expected)</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-            {activeTab === 'CAREER' && (
-              <div className="space-y-6 mb-16">
-                <div>
-                  <h3 className="text-lg font-bold mb-4">Employment Records</h3>
-                  <div className="space-y-6">
-                    {employment.map(job => (
-                      <div key={job.company} className="border-l-2 border-[#4AFA4A] pl-4">
-                        <div className="text-base font-bold">&gt; {job.company}</div>
-                        <div className="text-sm">{job.role} - {job.tech}</div>
-                        <div className="text-sm opacity-80 mb-2">{job.period}</div>
+                  <h3 className="text-lg font-bold mb-3 text-ink-darkest">Technical Skills</h3>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3">
+                    {skills.map(skillCat => (
+                      <div key={skillCat.category}>
+                        <h4 className="font-bold text-ink-dark flex items-center mb-1">{skillCat.icon}{skillCat.category}</h4>
+                        <p className="text-sm text-ink leading-snug">{skillCat.items.join(' • ')}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
+                {/* Education Section */}
                 <div>
-                  <h3 className="text-lg font-bold mb-4">Project Archives</h3>
-                  <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-[#4AFA4A] scrollbar-track-[#002800] pb-4">
-                    <div className="flex">
+                  <h3 className="text-lg font-bold mb-2 text-ink-darkest">Education</h3>
+                  <div className="border-l-2 border-ink-light pl-4">
+                    <div className="text-base font-semibold text-ink-dark"> Eastern Mediterranean University</div>
+                    <div className="text-sm text-ink">B.S. in Computer Science</div>
+                    <div className="text-xs text-ink opacity-80">Expected Graduation: 2025 | Famagusta, TRNC</div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {activeTab === 'DATA' && ( // Changed tab name
+              <div className="space-y-6">
+                {/* Experience Section */}
+                <div>
+                  <h3 className="text-lg font-bold mb-3 text-ink-darkest">Experience</h3>
+                  <div className="space-y-4">
+                    {employment.map((job, index) => (
+                      <div key={index} className="border-l-2 border-ink-light pl-4">
+                        <div className="flex justify-between items-baseline">
+                          <span className="text-base font-semibold text-ink-dark"> {job.company}</span>
+                          <span className="text-xs text-ink opacity-80">{job.period}</span>
+                        </div>
+                        <div className="text-sm text-ink">{job.role} - {job.tech}</div>
+                        <div className="text-xs text-ink opacity-80">{job.location}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Projects Section - Horizontal Scroll */}
+                <div>
+                  <h3 className="text-lg font-bold mb-3 text-ink-darkest">Projects</h3>
+                  <div className="overflow-x-auto scrollbar-thin pb-4">
+                    <div className="flex space-x-4">
                       {projects.map(project => (
                         <ProjectCard key={project.title} project={project} />
                       ))}
@@ -391,14 +382,19 @@ const Resume = () => {
           </div>
         </div>
 
-        {/* Navigation Tabs - Only show on desktop */}
-        <div className="hidden md:flex sticky md:absolute bottom-0 left-0 right-0 border-t border-[#4AFA4A] bg-[#001800]">
-          {['STATS', 'CAREER'].map(tab => (
+        {/* Navigation Tabs - Desktop Only */}
+        {/* Use theme colors for tabs */}
+        <div className="hidden md:flex sticky bottom-0 left-0 right-0 border-t-2 border-ink-dark bg-parchment shadow-inner">
+          {['INFO', 'DATA'].map(tab => (
             <button
               key={tab}
+              type="button" // Explicitly type buttons
               onClick={() => handleTabChange(tab)}
-              onMouseEnter={() => sounds.highlight.play()}
-              className={`flex-1 p-2 text-[#4AFA4A] transition-colors ${activeTab === tab ? 'bg-[#4AFA4A] text-[#001800]' : ''
+              onMouseEnter={handleSectionHover} // Optional sound
+              // Apply theme colors, darker background for inactive, lighter for active
+              className={`flex-1 p-2 text-sm font-bold transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-ink-light ${activeTab === tab
+                ? 'bg-parchment-dark text-ink-darkest border-r-2 border-ink-dark' // Active tab style
+                : 'bg-parchment text-ink hover:bg-parchment-dark border-r-2 border-ink-dark' // Inactive tab style
                 }`}
             >
               {tab}
