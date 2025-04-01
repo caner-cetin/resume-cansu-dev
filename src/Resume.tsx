@@ -53,11 +53,11 @@ const Resume = () => {
   const skills = [
     { category: 'Backend Languages', items: ['Go', 'Python', 'Kotlin', 'ASP.NET Core'], icon: <Code className="w-4 h-4 mr-1" /> },
     { category: 'DevOps & Infrastructure', items: ['Docker & Containerization', 'IaC', 'CI/CD', 'Linux Server Management', 'Nginx'], icon: <ServerCog className="w-4 h-4 mr-1" /> },
-    { category: 'Databases & Caching', items: ['PostgreSQL (HA, PgBouncer)', 'MongoDB', 'Redis (DragonflyDB)', 'sqlc', 'Goose'], icon: <Database className="w-4 h-4 mr-1" /> },
+    { category: 'Databases & Caching', items: ['PostgreSQL', 'MongoDB', 'Redis (DragonflyDB)', 'Microsoft SQL Server'], icon: <Database className="w-4 h-4 mr-1" /> },
     { category: 'Monitoring & Observability', items: ['Prometheus', 'Grafana', 'Loki Stack', 'Uptime Kuma'], icon: <Monitor className="w-4 h-4 mr-1" /> },
-    { category: 'Cloud & Tools', items: ['Cloudflare (R2, Pages)', 'Git', 'Shell Scripting', 'S3'], icon: <LucideUpload className="w-4 h-4 mr-1" /> },
+    { category: 'Cloud & Tools', items: ['Cloudflare', 'Git', 'Shell Scripting', 'S3'], icon: <LucideUpload className="w-4 h-4 mr-1" /> },
     // Frontend remains concise
-    { category: 'Frontend (Supporting)', items: ['TypeScript', 'React', 'Zustand', 'TanStack Tools'], icon: <FileCode className="w-4 h-4 mr-1" /> },
+    { category: 'Frontend (Supporting)', items: ['TypeScript', 'React', 'TanStack Tools'], icon: <FileCode className="w-4 h-4 mr-1" /> },
   ];
 
   const employment = [ // Content remains the same, just rendering changes
