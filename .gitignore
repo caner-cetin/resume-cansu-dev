@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+.astro # Astro build cache and other generated files
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +23,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.astro
